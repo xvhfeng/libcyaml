@@ -33,7 +33,6 @@ matrix:
       before_install:
         - sudo apt-get install -y libyaml-dev
         - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
-
       addons:
         coverity_scan:
           project:
@@ -43,6 +42,8 @@ matrix:
           build_command_prepend: make clean
           build_command: make
           branch_pattern: tlsa/coverity-scan
+      script:
+        - make
 
 before_install:
   - sudo apt-get update -qq
