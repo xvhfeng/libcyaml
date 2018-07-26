@@ -26,19 +26,22 @@ matrix:
           make coverage;
           find build/coverage -name "*.gc*" -type f -delete;
           bash <(curl -s https://codecov.io/bash) -X search -f build/coverage.xml;
-    - env:
+    - compiler: gcc
+      env:
         global:
-        - secure: "YP0IhYE2MuA21lb6pGMRy1FMVH0ttSN8uEWGEHu4uqQuXapUQ3kJncLk9f3sxTClnJVeDLBoBt6oYjzvJV20dG+0D7hwG4UUDTDKKiwkTCvOKU5a6UqrSHicAgTOacQ51TxWwC6DKbsa8iSgCRmOoZr8X8fG0TmxLWWC9b0z4gDCdIc1ccWbDSMaByS39yBJ/ooYt04beEhHXVWRVjUWEwaYW53Abm98zDXsv4kslcFFINhB0tSiufpEqmprq2m0oNBaEY1YooW56fWDZg+yxalX67/SIAgYeH0FS106tyhaQP+GSMi7HgKUhrPCba9m7GECsWK0W1pq0GzsCokX6HKwBfylHYXguVetQPHgwMmN0rckSEuB5cKf/y4/n5deXEkyUPsZ50lImyNegFdG44yFhlsPg1GQam2IMucDY+7S/8uR9poEeFIhwBqIx+xE+cq+Mg+ejD5+ugY9ij2SUqs7YsW4SUIa2IkA1igQ3o+nHkYZz9SUYokRFWyeCcXO9CfABzdMj5SCp7souCd+q48UTd4lk7ae3wOlMi6gQ/nj8dZvUqfnWpbSylAuzPn+Xklh3GJsYSKsU30dsjG3vLhahqZNwShG51UeTe1elfGpXXOk0UEJfOKfpOXjvgK0zK616BeyawqxxueaB01Xo7GwZMKjWg+Wz7zw9FqAwC0="
+        - secure: "Y/2g8QHDVPduA8cG0n1IB7sOrUCgKyngZO0NW2+szCYUzou1CVhRc6gZ6Q5kq4PhVTcaBUod7Kw1eUCgNj5jKsorJiXJCZHyLH7L+pZlYA6mnHzyyJYTV3jvH4PHJX+MlxrYASvLuZIV8p6SDe98prZTVrT2BZ3R5lkxrvYwnEQCsJeeLMiYqZ8pChUkVTwE9NS32JE6tOuyJJbrJTdap2p3kmiQ9FOlu8sSONyFAEsDPB1NLGpNeS5P0ActS/2D/XueLvUWquxIFiRfwccTkmSGDFgjHvgKDElsY2kRblv5asV9LwEXWvwQ/4AWTSwWfZE4WmFn6mRBWSwben4Fz9P0IWIF5pgw0fFzC1ShpF6dmM16ys1NRjFGrI+ruy1f0oppkzrwYwNPG8jAuyGL4Mrm4I9+yoUA4QzVimJ1DAZVpelnndYe9cma8K5PE+d+rB6s/qDe3F5aHWaVr2BNLqU4Aj4zLPq1+zy3EwuGo/LX9blcWD6n5hjNGEjZG/TdJfmcezLJkn6UDUQRTVTrJ4nLTnjhVgYYP2accAgmtuFT/y0MW0GVUk4Qkc0hTli2iAxPdVhB81VZGasrWZIsN1jQOCmiJ9b3kqA6kaE7csTURZTPoN5zMs0/Y2lbgyKVnl4puOBbvu0+Y6B7rHKquus6UOo/2AJZX5gqoGfb1Dw="
       before_install:
+        - sudo libyaml-dev
         - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
       addons:
         coverity_scan:
           project:
             name: "tlsa/libcyaml"
             description: "C library for reading and writing YAML."
           notification_email: tlsa@netsurf-browser.org
-          build_command_prepend: "make clean"
-          build_command: "make"
+          build_command_prepend: make clean
+          build_command: make
           branch_pattern: tlsa/coverity-scan
 
 before_install:
