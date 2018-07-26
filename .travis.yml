@@ -36,9 +36,9 @@ matrix:
             name: "tlsa/libcyaml"
             description: "C library for reading and writing YAML."
           notification_email: tlsa@netsurf-browser.org
-          build_command_prepend: make clean
-          build_command: make
-          branch_pattern: tlsa/coverity-scan
+          build_command_prepend: "make clean"
+          build_command: "make"
+          branch_pattern: coverity_scan
       script:
         - make
 
