@@ -30,9 +30,6 @@ matrix:
       env:
         global:
         - secure: "Y/2g8QHDVPduA8cG0n1IB7sOrUCgKyngZO0NW2+szCYUzou1CVhRc6gZ6Q5kq4PhVTcaBUod7Kw1eUCgNj5jKsorJiXJCZHyLH7L+pZlYA6mnHzyyJYTV3jvH4PHJX+MlxrYASvLuZIV8p6SDe98prZTVrT2BZ3R5lkxrvYwnEQCsJeeLMiYqZ8pChUkVTwE9NS32JE6tOuyJJbrJTdap2p3kmiQ9FOlu8sSONyFAEsDPB1NLGpNeS5P0ActS/2D/XueLvUWquxIFiRfwccTkmSGDFgjHvgKDElsY2kRblv5asV9LwEXWvwQ/4AWTSwWfZE4WmFn6mRBWSwben4Fz9P0IWIF5pgw0fFzC1ShpF6dmM16ys1NRjFGrI+ruy1f0oppkzrwYwNPG8jAuyGL4Mrm4I9+yoUA4QzVimJ1DAZVpelnndYe9cma8K5PE+d+rB6s/qDe3F5aHWaVr2BNLqU4Aj4zLPq1+zy3EwuGo/LX9blcWD6n5hjNGEjZG/TdJfmcezLJkn6UDUQRTVTrJ4nLTnjhVgYYP2accAgmtuFT/y0MW0GVUk4Qkc0hTli2iAxPdVhB81VZGasrWZIsN1jQOCmiJ9b3kqA6kaE7csTURZTPoN5zMs0/Y2lbgyKVnl4puOBbvu0+Y6B7rHKquus6UOo/2AJZX5gqoGfb1Dw="
-      before_install:
-        - sudo apt-get install -y libyaml-dev
-        - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
       addons:
         coverity_scan:
           project:
